@@ -4,9 +4,12 @@ export default function Footer() {
   return (
     <footer>
       <div className="container">
-        <span>
-          © {new Date().getFullYear()} {company.name}. All rights reserved.
-        </span>
+        <div className="footer-info">
+          <span>
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </span>
+          <address>{company.address}</address>
+        </div>
         <nav>
           <a href="#tentang">Tentang</a>
           <a href="#layanan">Layanan</a>
