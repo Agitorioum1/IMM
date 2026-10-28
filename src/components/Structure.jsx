@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
 import { organization } from '../data.js';
@@ -35,9 +36,19 @@ export default function Structure() {
         <Reveal className="org">
           {organization.map((tier) => (
             <div className="org-tier" style={{ '--n': tier.members.length }} key={tier.level}>
-              {tier.members.map((m) => (
-                <Member key={m.role} {...m} />
+              {tier.members.map((m, i) => (
+                <Fragment key={m.role}>
+                  <Member {...m} />
+                  {m.team && (
+                    <div className="org-branch" style={{ '--col': i + 1 }}>
+                      {m.team.map((t) => (
+                        <Member key={t.role} {...t} />
+                      ))}
+                    </div>
+                  )}
+                </Fragment>
               ))}
+              {tier.members.some((m) => m.team) && <span className="org-stem" />}
             </div>
           ))}
         </Reveal>
