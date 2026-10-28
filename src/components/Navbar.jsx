@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <a href="#top" className="brand" aria-label={company.name}>
-          <span className="brand-mark">IMM</span>
+          <img src="/img/logo.png" alt="" className="brand-logo" width="346" height="234" />
           <span className="brand-name">
             {company.short}
             <small>{company.tagline}</small>
