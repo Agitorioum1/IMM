@@ -36,14 +36,11 @@ export const mission = [
 ];
 
 export const services = [
-  { icon: 'flame', title: 'Steam Boiler', desc: 'Instalasi, commissioning, dan perawatan.' },
   { icon: 'pipe', title: 'Piping & Ducting', desc: 'Fabrikasi dan instalasi jalur pipa.' },
-  { icon: 'bolt', title: 'Electrical & Panel', desc: 'Kelistrikan, panel kontrol, penerangan.' },
-  { icon: 'chip', title: 'Automation', desc: 'Mesin otomatis, conveyor, retrofit.' },
-  { icon: 'wrench', title: 'Fabrication & Machining', desc: 'Jig, fixture, tool & die presisi.' },
-  { icon: 'refresh', title: 'Repair & Overhaul', desc: 'Overhaul ME/AE dan stern shaft.' },
-  { icon: 'lifebuoy', title: 'Marine Safety', desc: 'Servis lifeboat dan alat keselamatan kapal.' },
-  { icon: 'search', title: 'NDT & Maintenance', desc: 'Inspeksi NDT dan perawatan berkala.' },
+  { icon: 'bolt', title: 'Offshore', desc: 'Kelistrikan, panel kontrol, penerangan.' },
+  { icon: 'chip', title: 'Manufacturing', desc: 'Mesin otomatis, conveyor, retrofit.' },
+  { icon: 'wrench', title: 'Civil', desc: 'Jig, fixture, tool & die presisi.' },
+  { icon: 'refresh', title: 'Continous Improvement & Recruitment Agency', desc: 'Overhaul ME/AE dan stern shaft.' },
 ];
 
 export const jobScope = [
@@ -133,26 +130,20 @@ export const organization = [
     members: [
       { name: 'Robert Dwi Putra', role: 'General Manager' },
       { name: 'Suparman', role: 'Operational Manager' },
-      { name: 'M Alfi', role: 'CI', team: [{ name: 'Agit', role: 'Staff CI' }] },
+      { name: 'Mohammad Alfi', role: 'CI & Recruitment Agency', team: [{ name: 'Agit Pratama', role: 'Head of Operation' }] },
     ],
   },
   {
     level: 'Kepala Divisi',
     members: [
-      { name: 'Aris Pardomuan S', role: 'Senior Marketing' },
+      { name: 'Aris Pardomuan S', role: 'Senior Marketing', team: [{ name: null, role: 'Marketing' }] },
       { name: 'Safix Alfian', role: 'Designer' },
-      { name: 'Ariawati', role: 'FA & Procurement' },
-      { name: 'Alya Maslihatul Salsa', role: 'HRD' },
-      { name: 'Heri Tri Handoko', role: 'Engineering' },
+      { name: 'Ariawati', role: 'Admin & Procurement' },
+      { name: 'Nadia', role: 'HRD' },
+      { name: 'Heri Tri Handoko', role: 'Engineering', team: [{ name: 'Budi', role: 'Fabrication' }, { name: 'Habitra', role: 'Technician' }] }
     ],
   },
-  {
-    level: 'Tim Lapangan',
-    members: [
-      { name: null, role: 'Marketing', note: 'Senior Marketing' },
-      { name: 'Budi', role: 'Fabrication', note: 'Engineering' },
-      { name: 'Habitra', role: 'Technician', note: 'Fabrication' },    ],
-  },
+
 ];
 
 export const contactPersons = [
