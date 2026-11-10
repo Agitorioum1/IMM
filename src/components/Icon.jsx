@@ -55,6 +55,9 @@ const paths = {
   infinity: <path d="M12 12c-2-2.7-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.3 6-4zm0 0c2 2.7 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.3-6 4z" />,
 };
 
+// Dipakai panel admin untuk pilihan ikon layanan
+export const iconNames = Object.keys(paths).filter((n) => !['arrow', 'arrowUpRight', 'check'].includes(n));
+
 export default function Icon({ name, strokeWidth = 1.7 }) {
   return (
     <svg

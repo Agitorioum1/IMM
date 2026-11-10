@@ -2,22 +2,24 @@ import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
 import Icon from './Icon.jsx';
 import { Link } from '../router.jsx';
-import { services } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Services() {
+  const { services } = useContent();
+
   return (
     <section id="layanan">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Layanan" title="Satu mitra, semua kebutuhan engineering." />
+          <SectionHead eyebrow={services.eyebrow} title={services.title} />
         </Reveal>
 
         <Reveal className="services-grid">
-          {services.map((s, i) => (
+          {services.items.map((s, i) => (
             <Link
               to={`/layanan/${s.slug}`}
               className="service"
-              key={s.slug}
+              key={i}
               // Tombol "kembali" browser dari halaman detail mendarat di bagian Layanan
               onClick={() => window.history.replaceState(null, '', '/#layanan')}
             >

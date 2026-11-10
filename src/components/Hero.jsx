@@ -1,9 +1,12 @@
 import Reveal from './Reveal.jsx';
 import Icon from './Icon.jsx';
 import CountUp from './CountUp.jsx';
-import { stats } from '../data.js';
+import { imgSrc } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Hero() {
+  const { hero } = useContent();
+
   return (
     <section className="hero">
       <div className="container">
@@ -11,19 +14,21 @@ export default function Hero() {
           <Reveal>
             <span className="pill">
               <i className="pulse" />
-              General Contractor · Batam
+              {hero.pill}
             </span>
             <h1>
-              Engineering{' '}
-              <em>
-                presisi
-                <svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M2 9C50 3 150 2 198 7" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
-                </svg>
-              </em>{' '}
-              untuk industri.
+              {hero.titleBefore}{' '}
+              {hero.titleHighlight && (
+                <em>
+                  {hero.titleHighlight}
+                  <svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M2 9C50 3 150 2 198 7" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+                  </svg>
+                </em>
+              )}{' '}
+              {hero.titleAfter}
             </h1>
-            <p className="hero-lead">Steam boiler, piping, electrical, hingga automation — dikerjakan dengan tepat.</p>
+            <p className="hero-lead">{hero.lead}</p>
             <div className="hero-cta">
               <a href="#kontak" className="btn btn-primary">
                 Konsultasi Proyek <Icon name="arrow" strokeWidth={2} />
@@ -35,26 +40,26 @@ export default function Hero() {
           </Reveal>
 
           <Reveal className="hero-media">
-            <img src="/img/hero-boiler.jpg" alt="Teknisi IMM melakukan commissioning burner steam boiler" />
+            <img src={imgSrc(hero.image)} alt={hero.imageAlt} />
             <span className="hero-chip">
               <Icon name="bolt" strokeWidth={2} />
-              Mechanical · Electrical · Automation
+              {hero.chip}
             </span>
             <div className="hero-badge float">
               <i className="dot" />
               <div>
-                <strong>Office & Workshop</strong>
-                <span>Batam, Kepulauan Riau</span>
+                <strong>{hero.badgeTitle}</strong>
+                <span>{hero.badgeText}</span>
               </div>
             </div>
           </Reveal>
         </div>
 
         <Reveal className="stats">
-          {stats.map((s) => (
-            <div className="stat" key={s.label}>
+          {hero.stats.map((s, i) => (
+            <div className="stat" key={i}>
               <b>
-                <CountUp to={s.value} />
+                <CountUp to={Number(s.value) || 0} />
                 {s.suffix && <sup>{s.suffix}</sup>}
               </b>
               <span>{s.label}</span>

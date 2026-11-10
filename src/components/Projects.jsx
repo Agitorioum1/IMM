@@ -1,19 +1,23 @@
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
-import { highlightProject, projects } from '../data.js';
+import { imgSrc } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Projects() {
+  const { projects } = useContent();
+  const { highlight } = projects;
+
   return (
     <section className="projects" id="proyek">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Proyek" title="Hasil kerja di lapangan." />
+          <SectionHead eyebrow={projects.eyebrow} title={projects.title} />
         </Reveal>
 
         <Reveal className="gallery">
-          {projects.map((p) => (
-            <figure className={`shot ${p.size ?? ''}`} key={p.img}>
-              <img src={`/img/${p.img}`} alt={p.alt} loading="lazy" />
+          {projects.items.map((p, i) => (
+            <figure className={`shot ${p.size ?? ''}`} key={i}>
+              <img src={imgSrc(p.img)} alt={p.alt} loading="lazy" />
               <figcaption>
                 {p.title}
                 <span>{p.sub}</span>
@@ -22,13 +26,15 @@ export default function Projects() {
           ))}
         </Reveal>
 
-        <Reveal className="highlight">
-          <div>
-            <strong>{highlightProject.title}</strong>
-            <p>{highlightProject.desc}</p>
-          </div>
-          <span className="year">{highlightProject.year}</span>
-        </Reveal>
+        {highlight?.title && (
+          <Reveal className="highlight">
+            <div>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.desc}</p>
+            </div>
+            <span className="year">{highlight.year}</span>
+          </Reveal>
+        )}
       </div>
     </section>
   );

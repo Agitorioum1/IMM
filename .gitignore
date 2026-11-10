@@ -1,2 +1,9 @@
 node_modules
 dist
+
+# Rahasia & data lokal panel admin
+.env
+.env.local
+.data
+public/uploads
+.vercel
