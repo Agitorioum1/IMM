@@ -1,22 +1,26 @@
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
 import Icon from './Icon.jsx';
-import { products, qualityPoints } from '../data.js';
+import { imgSrc } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Quality() {
+  const { quality } = useContent();
+
   return (
     <section>
       <div className="container">
         <div className="quality-grid">
           <Reveal className="quality-media">
-            <img src="/img/overhaul.jpg" alt="Tim IMM melakukan overhaul alat berat di lapangan" loading="lazy" />
-            <img src="/img/hero-boiler.jpg" alt="Pengecekan burner steam boiler" loading="lazy" />
+            {quality.images.map((p, i) => (
+              <img key={i} src={imgSrc(p.img)} alt={p.alt} loading="lazy" />
+            ))}
           </Reveal>
           <Reveal>
-            <SectionHead eyebrow="Kebijakan Mutu" title="Tanpa kompromi soal kualitas." flush />
+            <SectionHead eyebrow={quality.eyebrow} title={quality.title} flush />
             <ul className="checklist">
-              {qualityPoints.map((q) => (
-                <li key={q}>
+              {quality.points.map((q, i) => (
+                <li key={i}>
                   <Icon name="check" strokeWidth={2} />
                   {q}
                 </li>
@@ -25,8 +29,8 @@ export default function Quality() {
             <div className="products">
               <h3>Produk</h3>
               <div className="tags">
-                {products.map((p) => (
-                  <span className="tag" key={p}>
+                {quality.products.map((p, i) => (
+                  <span className="tag" key={i}>
                     {p}
                   </span>
                 ))}

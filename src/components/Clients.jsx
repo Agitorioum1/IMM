@@ -1,18 +1,20 @@
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
-import { clients, partners } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Clients() {
+  const { clients } = useContent();
+
   return (
     <section className="clients" id="klien">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Klien & Partner" title="Dipercaya 50+ perusahaan." />
+          <SectionHead eyebrow={clients.eyebrow} title={clients.title} />
         </Reveal>
 
         <Reveal className="client-grid">
-          {clients.map((c) => (
-            <div className="client" key={c}>
+          {clients.items.map((c, i) => (
+            <div className="client" key={i}>
               {c}
             </div>
           ))}
@@ -20,8 +22,8 @@ export default function Clients() {
 
         <Reveal className="partners">
           <h3>Partner</h3>
-          {partners.map((p) => (
-            <div className="partner" key={p.name}>
+          {clients.partners.map((p, i) => (
+            <div className="partner" key={i}>
               <strong>{p.name}</strong>
               <span>{p.desc}</span>
             </div>

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
-import { organization } from '../data.js';
+import { useContent } from '../content.jsx';
 
 const initials = (text) =>
   text
@@ -13,7 +13,7 @@ const initials = (text) =>
     .toUpperCase();
 
 // Anggota dengan teamLayout 'row' memakai kolom sebanyak timnya, supaya tim muat berjajar di bawahnya
-const spanOf = (m) => (m.teamLayout === 'row' ? m.team.length : 1);
+const spanOf = (m) => (m.teamLayout === 'row' && m.team?.length ? m.team.length : 1);
 
 function Member({ name, role, note, lead, span = 1 }) {
   return (
@@ -21,9 +21,9 @@ function Member({ name, role, note, lead, span = 1 }) {
       className={`org-card ${lead ? 'lead' : ''} ${span > 1 ? 'wide' : ''}`}
       style={span > 1 ? { '--span': span } : undefined}
     >
-      <span className="org-avatar">{initials(name ?? role)}</span>
+      <span className="org-avatar">{initials(name || role || '?')}</span>
       <div>
-        <strong>{name ?? role}</strong>
+        <strong>{name || role}</strong>
         <span>{name ? role : 'Tim'}</span>
         {note && <small>↳ {note}</small>}
       </div>
@@ -32,11 +32,14 @@ function Member({ name, role, note, lead, span = 1 }) {
 }
 
 export default function Structure() {
+  const { structure } = useContent();
+  const organization = structure.organization;
+
   return (
     <section className="structure" id="struktur">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Struktur Organisasi" title="Tim di balik setiap proyek." />
+          <SectionHead eyebrow={structure.eyebrow} title={structure.title} />
         </Reveal>
 
         <Reveal className="org">
@@ -50,12 +53,12 @@ export default function Structure() {
               <div
                 className="org-tier"
                 style={{ '--n': cols, '--fs': spans[0], '--ls': spans[spans.length - 1] }}
-                key={tier.level}
+                key={ti}
               >
                 {tier.members.map((m, i) => (
-                  <Fragment key={m.role}>
+                  <Fragment key={i}>
                     <Member {...m} span={spans[i]} />
-                    {m.team && (
+                    {m.team?.length > 0 && (
                       <div
                         className={`org-branch ${m.teamLayout === 'row' ? 'row' : ''}`}
                         style={{ '--col': starts[i], '--span': spans[i] }}
@@ -68,7 +71,7 @@ export default function Structure() {
                   </Fragment>
                 ))}
                 {/* Garis tengah hanya diteruskan bila masih ada tingkat di bawahnya */}
-                {tier.members.some((m) => m.team) && ti < organization.length - 1 && (
+                {tier.members.some((m) => m.team?.length) && ti < organization.length - 1 && (
                   <span className="org-stem" />
                 )}
               </div>

@@ -1,8 +1,9 @@
 import Reveal from './Reveal.jsx';
 import Icon from './Icon.jsx';
-import { company, contactPersons } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Contact() {
+  const { company, contact } = useContent();
   const rows = [
     { label: 'Alamat', value: company.address },
     { label: 'Telepon', value: company.phone.label, href: company.phone.href },
@@ -15,9 +16,9 @@ export default function Contact() {
       <div className="container">
         <Reveal className="contact-card">
           <div>
-            <span className="eyebrow">Kontak</span>
-            <h2>Mari bicara.</h2>
-            <p>Ceritakan kebutuhan proyek Anda.</p>
+            <span className="eyebrow">{contact.eyebrow}</span>
+            <h2>{contact.title}</h2>
+            <p>{contact.lead}</p>
             <div className="hero-cta">
               <a href={company.whatsapp} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 Chat WhatsApp <Icon name="arrow" strokeWidth={2} />
@@ -27,8 +28,8 @@ export default function Contact() {
               </a>
             </div>
             <div className="people">
-              {contactPersons.map((p) => (
-                <div className="person" key={p.name}>
+              {contact.persons.map((p, i) => (
+                <div className="person" key={i}>
                   <strong>{p.name}</strong>
                   <span>{p.role}</span>
                   <a href={p.href}>{p.phone}</a>

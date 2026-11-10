@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import Reveal from './Reveal.jsx';
 import Icon from './Icon.jsx';
+import Carousel from './Carousel.jsx';
 import { Link } from '../router.jsx';
-import { company, services } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function ServiceDetail({ slug }) {
-  const index = services.findIndex((s) => s.slug === slug);
-  const service = services[index];
+  const { company, services } = useContent();
+  const index = services.items.findIndex((s) => s.slug === slug);
+  const service = services.items[index];
 
   useEffect(() => {
     const prev = document.title;
@@ -14,7 +16,7 @@ export default function ServiceDetail({ slug }) {
     return () => {
       document.title = prev;
     };
-  }, [service]);
+  }, [service, company.name]);
 
   return (
     <>
@@ -41,7 +43,10 @@ export default function ServiceDetail({ slug }) {
 }
 
 function Detail({ service, index }) {
-  const { intro, scope, images } = service.detail;
+  const { company } = useContent();
+  const { intro = '', scope = [], images: allImages = [] } = service.detail ?? {};
+  // Lewati foto yang belum diisi gambarnya di admin
+  const images = allImages.filter((p) => p.img);
 
   return (
     <>
@@ -64,8 +69,8 @@ function Detail({ service, index }) {
             <Reveal>
               <h2>Lingkup pekerjaan</h2>
               <ul className="vm-list">
-                {scope.map((item) => (
-                  <li key={item}>
+                {scope.map((item, i) => (
+                  <li key={i}>
                     <Icon name="check" />
                     {item}
                   </li>
@@ -74,12 +79,8 @@ function Detail({ service, index }) {
             </Reveal>
 
             {images.length > 0 && (
-              <Reveal className="detail-gallery">
-                {images.map((p) => (
-                  <figure className="shot" key={p.img}>
-                    <img src={`/img/${p.img}`} alt={p.alt} loading="lazy" />
-                  </figure>
-                ))}
+              <Reveal>
+                <Carousel images={images} />
               </Reveal>
             )}
           </div>

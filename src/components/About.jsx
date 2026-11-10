@@ -1,18 +1,20 @@
 import Reveal from './Reveal.jsx';
 import SectionHead from './SectionHead.jsx';
 import Icon from './Icon.jsx';
-import { mission, vision } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function About() {
+  const { about } = useContent();
+
   return (
     <section className="about" id="tentang">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Tentang Kami" title="Tim solid. Mesin modern." />
+          <SectionHead eyebrow={about.eyebrow} title={about.title} />
         </Reveal>
 
         <Reveal className="about-intro">
-          <p className="about-lead">Solusi engineering yang dirancang, dibangun, dan dipasang sesuai kebutuhan Anda.</p>
+          <p className="about-lead">{about.lead}</p>
         </Reveal>
 
         <Reveal className="vm">
@@ -20,15 +22,15 @@ export default function About() {
             <span className="vm-label">
               <i>01</i> Visi
             </span>
-            <p className="vm-vision">{vision}</p>
+            <p className="vm-vision">{about.vision}</p>
           </article>
           <article className="vm-item">
             <span className="vm-label">
               <i>02</i> Misi
             </span>
             <ul className="vm-list">
-              {mission.map((m) => (
-                <li key={m}>
+              {about.mission.map((m, i) => (
+                <li key={i}>
                   <Icon name="check" strokeWidth={2} />
                   {m}
                 </li>

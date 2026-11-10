@@ -1,6 +1,8 @@
-import { company } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Footer() {
+  const { company } = useContent();
+
   return (
     <footer>
       <div className="container">

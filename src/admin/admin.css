@@ -1,0 +1,137 @@
+/* Panel admin. Memakai token warna dari index.css (--ink, --line, --accent, ...). */
+.admin { min-height: 100vh; background: var(--bg-soft); color: var(--ink); font-size: 15px; line-height: 1.5; }
+.admin button, .admin input, .admin select, .admin textarea { font: inherit; color: inherit; }
+.adm-center { display: grid; place-items: center; padding: 24px; }
+
+/* ---------- Login ---------- */
+.adm-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(14, 17, 22, .55); min-height: 0; }
+.adm-login {
+  width: 100%; max-width: 380px; display: grid; gap: 14px;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px;
+}
+.adm-login img { width: 72px; height: auto; }
+.adm-login h1 { font-size: 24px; }
+.adm-login p { color: var(--ink-2); }
+.adm-link { font-size: 14px; color: var(--ink-3); justify-self: center; }
+.adm-link:hover { color: var(--ink); }
+
+/* ---------- Layout ---------- */
+.adm-layout { display: grid; grid-template-columns: 260px 1fr; align-items: start; }
+.adm-side {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 20px;
+  background: #fff; border-right: 1px solid var(--line); padding: 20px 14px;
+}
+.adm-brand { display: flex; align-items: center; gap: 10px; padding: 0 8px; font-weight: 700; }
+.adm-brand img { height: 36px; width: auto; }
+.adm-brand small { display: block; font-weight: 500; font-size: 12px; color: var(--ink-3); }
+.adm-side nav { display: grid; gap: 2px; }
+.adm-side nav button {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  text-align: left; padding: 9px 12px; border: 0; border-radius: 8px; background: none; cursor: pointer; color: var(--ink-2);
+}
+.adm-side nav button:hover { background: var(--bg-soft); color: var(--ink); }
+.adm-side nav button.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.adm-dot { width: 8px; height: 8px; border-radius: 50%; background: #e2a400; flex: none; }
+.adm-side-foot { margin-top: auto; display: grid; gap: 8px; }
+
+.adm-main { padding: 28px clamp(16px, 4vw, 48px) 80px; min-width: 0; max-width: 980px; }
+.adm-head {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start;
+  background: var(--bg-soft); padding: 8px 0 16px; margin-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.adm-head h1 { font-size: 24px; }
+.adm-head p { color: var(--ink-2); font-size: 14px; margin-top: 4px; max-width: 520px; }
+.adm-badge {
+  display: inline-block; margin-top: 8px; font-size: 12px; padding: 2px 10px; border-radius: 999px;
+  background: #fff; border: 1px solid var(--line); color: var(--ink-3);
+}
+.adm-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- Tombol ---------- */
+.adm-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line);
+  background: #fff; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap;
+}
+.adm-btn:hover:not(:disabled) { border-color: var(--ink); }
+.adm-btn:disabled { opacity: .45; cursor: not-allowed; }
+.adm-btn.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+.adm-btn.primary:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.adm-btn.ghost { background: transparent; }
+.adm-btn.small { height: 34px; padding: 0 14px; font-size: 13px; }
+
+/* ---------- Pesan ---------- */
+.adm-ok, .adm-error { padding: 10px 14px; border-radius: 10px; font-size: 14px; margin: 12px 0; }
+.adm-ok { background: #e7f6ec; color: #1d6b3a; }
+.adm-error { background: #fdecec; color: #a12a2a; }
+small.adm-error { padding: 4px 8px; margin: 0; }
+
+/* ---------- Form ---------- */
+.adm-form { margin-top: 16px; }
+.adm-object { display: grid; gap: 16px; }
+.adm-field { display: grid; gap: 6px; }
+.adm-field > span { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.adm-field.inline { display: flex; align-items: center; flex-direction: row-reverse; justify-content: flex-end; gap: 10px; }
+.adm-help { font-size: 12px; color: var(--ink-3); }
+.admin input[type="text"], .admin input[type="number"], .admin input[type="password"], .admin input:not([type]),
+.admin select, .admin textarea {
+  width: 100%; padding: 9px 12px; background: #fff;
+  border: 1px solid var(--line); border-radius: 10px; outline: none;
+}
+.admin textarea { resize: vertical; }
+.admin input:focus, .admin select:focus, .admin textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.admin input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+
+.adm-group { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 16px; margin: 0; background: #fff; min-width: 0; }
+.adm-group > legend { font-size: 13px; font-weight: 700; padding: 0 6px; }
+.adm-group > .adm-help { display: block; margin: -4px 0 10px; }
+.adm-group .adm-group { background: var(--bg-soft); }
+.adm-group .adm-group .adm-group { background: #fff; }
+
+/* Daftar item */
+.adm-list, .adm-strings { display: grid; gap: 8px; }
+.adm-item { border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.adm-item > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 8px 8px 14px; cursor: pointer; list-style: none;
+}
+.adm-item > summary::-webkit-details-marker { display: none; }
+.adm-item > summary::before { content: "▸"; color: var(--ink-3); transition: transform .15s; }
+.adm-item[open] > summary::before { transform: rotate(90deg); }
+.adm-item-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: 14px; }
+.adm-item-body { padding: 4px 14px 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+.adm-item .adm-group { background: var(--bg-soft); }
+
+.adm-tools { display: inline-flex; gap: 4px; flex: none; }
+.adm-tools button {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 13px;
+}
+.adm-tools button:hover:not(:disabled) { border-color: var(--ink); }
+.adm-tools button:disabled { opacity: .35; cursor: not-allowed; }
+.adm-tools button.danger:hover { border-color: #c0392b; color: #c0392b; }
+.adm-string { display: flex; gap: 8px; align-items: center; }
+.adm-add {
+  justify-self: start; padding: 7px 14px; border-radius: 999px; border: 1px dashed #c4c9d2;
+  background: transparent; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink-2);
+}
+.adm-add:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Gambar */
+.adm-image { display: flex; gap: 14px; align-items: flex-start; }
+.adm-thumb {
+  flex: none; width: 120px; height: 84px; border-radius: 10px; overflow: hidden;
+  display: grid; place-items: center; background: var(--bg-soft); border: 1px solid var(--line);
+  font-size: 12px; color: var(--ink-3); text-align: center;
+}
+.adm-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.adm-image-controls { flex: 1; min-width: 0; display: grid; gap: 8px; justify-items: start; }
+
+@media (max-width: 860px) {
+  .adm-layout { grid-template-columns: 1fr; }
+  .adm-side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .adm-side nav { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .adm-side-foot { grid-template-columns: 1fr 1fr; }
+  .adm-image { flex-direction: column; }
+}

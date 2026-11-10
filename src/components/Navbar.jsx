@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { company, navLinks } from '../data.js';
+import { navLinks } from '../data.js';
+import { useContent } from '../content.jsx';
 
 export default function Navbar() {
+  const { company } = useContent();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
