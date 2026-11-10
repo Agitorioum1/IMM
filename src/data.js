@@ -212,6 +212,7 @@ export const partners = [
 // Struktur organisasi, per tingkat dari atas ke bawah.
 // `note` = atasan langsung untuk tingkat staf.
 // `team` = bawahan langsung yang digambar sebagai garis lurus tersendiri di bawah anggota itu.
+// `teamLayout: 'row'` = anggota `team` dijajarkan ke samping, bukan ditumpuk ke bawah.
 export const organization = [
   { level: 'Pimpinan', members: [{ name: 'Nanang Supriyanto', role: 'Director', lead: true }] },
   {
@@ -219,7 +220,7 @@ export const organization = [
     members: [
       { name: 'Robert Dwi Putra', role: 'General Manager' },
       { name: 'Suparman', role: 'Operational Manager' },
-      { name: 'Mohammad Alfi', role: 'Head of CI & Recruitment Agency', team: [{ name: 'Agit Pratama', role: 'Head of Operation' }] },
+      { name: 'Mohammad Alfi', role: 'Head of CI & Recruitment Agency', teamLayout: 'row', team: [{ name: 'Agit Pratama', role: 'Head of Operation' }, { name: 'Agit Pratama', role: 'Head of Operation' } ] },
     ],
   },
   {
