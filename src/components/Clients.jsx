@@ -7,7 +7,7 @@ export default function Clients() {
     <section className="clients" id="klien">
       <div className="container">
         <Reveal>
-          <SectionHead eyebrow="Klien & Partner" title="Dipercaya 24+ perusahaan." />
+          <SectionHead eyebrow="Klien & Partner" title="Dipercaya 50+ perusahaan." />
         </Reveal>
 
         <Reveal className="client-grid">
