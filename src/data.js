@@ -39,9 +39,9 @@ export const mission = [
 // `images` mengacu ke file di public/img dan boleh dikosongkan.
 export const services = [
   {
-    slug: 'piping-ducting',
+    slug: 'Marine',
     icon: 'ship',
-    title: 'Piping & Ducting',
+    title: 'Marine',
     desc: 'Fabrikasi dan instalasi jalur pipa.',
     detail: {
       intro: 'Fabrikasi, pengelasan, dan instalasi jalur pipa serta sistem ducting untuk area pabrik dan industri.',
@@ -219,8 +219,10 @@ export const organization = [
     members: [
       { name: 'Robert Dwi Putra', role: 'General Manager' },
       { name: 'Suparman', role: 'Operational Manager' },
-      { name: 'Mohammad Alfi', role: 'Head of CI & Recruitment Agency', team: [{ name: 'Agit Pratama', role: 'Head of Operation' }] },
+      { name: 'Mohammad Alfi', role: 'Head of CI & Recruitment Agency', teamLayout: 'row', team: [{ name: 'Agit Pratama', role: 'Head of Operation' }, { name: 'Agit Pratama', role: 'Head of Operation' }] },
+
     ],
+
   },
   {
     level: 'Kepala Divisi',
